@@ -51,6 +51,7 @@ public class loginpagecontroller implements Initializable {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+    
     @FXML
     private void loginbtn (ActionEvent event){
         String username = uname.getText();
@@ -111,20 +112,21 @@ public class loginpagecontroller implements Initializable {
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
 
         try (Connection connection = cConfig.connect;
-             PreparedStatement statement = connection.prepareStatement(query)) {
+            PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, username);
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
 
-            return resultSet.next(); //autentikasi sukses jika baris hasil query ditemukan
+            return resultSet.next(); // autentikasi berhasil jika ditemukan baris yang cocok
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return false; // Autentikasi gagal
+        return false; // autentikasi gagal
     }
+
 
     private String encryptPassword(String password) {
         try {

@@ -95,13 +95,15 @@ public class signupcontroller {
     }
 
     private boolean register(String username, String password) {
-        String query = "INSERT INTO users (username, password) VALUES (?, ?)";
+        String query = "INSERT INTO users (username, password, isAdmin) VALUES (?, ?, ?)";
 
         try (Connection connection = cConfig.connect;
-             PreparedStatement statement = connection.prepareStatement(query)) {
+            PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, username);
             statement.setString(2, password);
+            statement.setBoolean(3, false); // Nilai default untuk isAdmin
+
             statement.executeUpdate();
 
             return true; // Pendaftaran sukses
