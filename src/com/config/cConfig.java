@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class cConfig {
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/perpus";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/dbperpus";
     private static final String USER = "root";
     private static final String PASS = "";
 

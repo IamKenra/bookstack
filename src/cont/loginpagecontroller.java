@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
+import javafx.scene.Node;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,18 +22,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+import javafx.stage.StageStyle;
 
 import com.config.cConfig;
 
 
 public class loginpagecontroller implements Initializable {
-    private Stage stage;
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
     @FXML
     private PasswordField pass;
 
@@ -49,6 +43,14 @@ public class loginpagecontroller implements Initializable {
     @FXML
     private Button daftarbtn;
 
+    @FXML
+    private Node rootNode; // Tambahkan ini pada class
+
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
     @FXML
     private void loginbtn (ActionEvent event){
         String username = uname.getText();
@@ -69,35 +71,37 @@ public class loginpagecontroller implements Initializable {
     }
     
     @FXML
-    public void daftar() throws IOException, InvocationTargetException {
-    if (stage != null) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/daftarpage.fxml"));
-            Parent root = loader.load();
+    public void daftar() throws IOException {
+        if (daftarbtn.getScene() != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/daftarpage.fxml"));
+                Parent root = loader.load();
 
-            cont.signupcontroller signupController = loader.getController();
-            signupController.setStage(stage);
+                cont.signupcontroller signupController = loader.getController();
+                signupController.setStage((Stage) daftarbtn.getScene().getWindow());
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show(); // Memperlihatkan daftarpage.fxml
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setResizable(false);
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.show();
+                
+                //menutup loginpage.fxml setelah daftarpage.fxml ditampilkan
+                Stage loginStage = (Stage) daftarbtn.getScene().getWindow();
+                loginStage.close();
 
-            // Menutup loginpage.fxml setelah daftarpage.fxml ditampilkan
-            Stage loginStage = (Stage) closebtn.getScene().getWindow();
-            loginStage.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Throwable cause = e.getCause();
-            if (cause != null) {
-                cause.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }
-    } else {
-        System.err.println("Stage is not set. Please set the stage before calling 'daftar()'.");
+        } 
+            else {
+            System.err.println("Scene is not set. Please make sure the button is attached to a scene.");
+            }
     }
-}
 
 
+   
     @FXML
     public void close() {
         stage.close();
@@ -113,7 +117,7 @@ public class loginpagecontroller implements Initializable {
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
 
-            return resultSet.next(); // Autentikasi sukses jika baris hasil query ditemukan
+            return resultSet.next(); //autentikasi sukses jika baris hasil query ditemukan
 
         } catch (SQLException e) {
             e.printStackTrace();

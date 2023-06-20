@@ -3,10 +3,15 @@ import com.config.cConfig;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -14,7 +19,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class signupcontroller {
-    @FXML
     private Stage stage;
 
     public void setStage(Stage stage) {
@@ -28,10 +32,9 @@ public class signupcontroller {
     private PasswordField pass,conpass;
 
     @FXML
-    private Button daftarbtn,closebtn;
+    private Button daftarbtn,closebtn,backbtn;
 
     
-
     @FXML
     private void daftar() {
         String username = uname.getText();
@@ -55,6 +58,40 @@ public class signupcontroller {
         } else {
             showErrorAlert("Registration Failed", "Failed to encrypt password");
         }
+    }
+
+    @FXML
+    public void close() {
+        stage.close();
+    }
+
+    @FXML
+    public void back() throws IOException, InvocationTargetException{
+        if (stage != null) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/loginpage.fxml"));
+            Parent root = loader.load();
+
+            cont.loginpagecontroller loginController = loader.getController();
+            loginController.setStage(stage);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show(); // Memperlihatkan daftarpage.fxml
+
+            // Menutup loginpage.fxml setelah daftarpage.fxml ditampilkan
+            Stage daftarStage = (Stage) closebtn.getScene().getWindow();
+            daftarStage.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Throwable cause = e.getCause();
+                if (cause != null) {
+                    cause.printStackTrace();
+                }
+            }
+            } else {
+                System.err.println("Stage is not set. Please set the stage before calling 'daftar()'.");
+            }
     }
 
     private boolean register(String username, String password) {

@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="frame" accessibleRole="BUTTON" maxHeight="400" maxWidth="700" minHeight="400" minWidth="700" prefHeight="400.0" prefWidth="700.0" styleClass="frame" stylesheets="@../syle/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cont.signupcontroller">
+<AnchorPane id="frame" accessibleRole="BUTTON" maxHeight="400" maxWidth="700" minHeight="400" minWidth="700" prefHeight="400.0" prefWidth="700.0" styleClass="frame" stylesheets="@../syle/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cont.signupcontroller">
    <children>
       <PasswordField fx:id="pass" layoutX="427.0" layoutY="174.0" prefHeight="30.0" prefWidth="214.0" promptText="Password" styleClass="tf" stylesheets="@../syle/style.css" />
       <TextField id="tf" fx:id="uname" layoutX="428.0" layoutY="133.0" prefHeight="30.0" prefWidth="214.0" promptText="Username" styleClass="tf" stylesheets="@style.css" />
@@ -28,7 +28,7 @@
             <Font name="System Bold" size="28.0" />
          </font>
       </Text>
-      <Button fx:id="closebtn" layoutX="650.0" layoutY="14.0" styleClass="closeBtnImg">
+      <Button fx:id="closebtn" layoutX="650.0" layoutY="14.0" onAction="#close" styleClass="closeBtnImg">
          <graphic>
             <ImageView fitHeight="20" fitWidth="20" layoutX="424.0" layoutY="41.0" styleClass="closeBtnImg">
                <image>
@@ -38,6 +38,7 @@
          </graphic>
       </Button>
       <PasswordField fx:id="conpass" layoutX="427.0" layoutY="214.0" prefHeight="30.0" prefWidth="214.0" promptText=" Konfirmasi Password" styleClass="tf" stylesheets="@../syle/style.css" />
+      <Button fx:id="backbtn" layoutX="388.0" layoutY="17.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="26.0" text="&lt;" />
    </children>
    <opaqueInsets>
       <Insets />
