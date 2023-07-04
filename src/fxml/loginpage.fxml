@@ -12,22 +12,6 @@
 
 <AnchorPane id="frame" accessibleRole="BUTTON" maxHeight="400" maxWidth="700" minHeight="400" minWidth="700" prefHeight="400.0" prefWidth="700.0" styleClass="frame" stylesheets="@../syle/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cont.loginpagecontroller">
    <children>
-      <PasswordField fx:id="pass" layoutX="430.0" layoutY="192.0" prefHeight="26.0" prefWidth="209.0" promptText="Password" styleClass="tf" stylesheets="@../syle/style.css" />
-      <TextField id="tf" fx:id="uname" layoutX="429.0" layoutY="150.0" prefHeight="30.0" prefWidth="214.0" promptText="Username" styleClass="tf" stylesheets="@style.css" />
-      <AnchorPane id="logo" prefHeight="400.0" prefWidth="371.0" styleClass="logo" stylesheets="@style.css">
-         <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="118.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/Logo.png" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
-      <Button fx:id="logbtn" layoutX="486.0" layoutY="249.0" mnemonicParsing="false" onAction="#loginbtn" styleClass="lgBtn" stylesheets="@style.css" text="Masuk" textFill="WHITE" />
-      <Text fill="#447fb5" layoutX="430.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selamat Datang">
-         <font>
-            <Font name="System Bold" size="28.0" />
-         </font>
-      </Text>
       <Button fx:id="closebtn" layoutX="650.0" layoutY="14.0" onAction="#close" styleClass="closeBtnImg">
          <graphic>
             <ImageView fitHeight="20" fitWidth="20" layoutX="424.0" layoutY="41.0" styleClass="closeBtnImg">
@@ -37,11 +21,27 @@
             </ImageView>
          </graphic>
       </Button>
+      <Text fill="#447fb5" layoutX="430.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selamat Datang">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Text>
+      <TextField id="tf" fx:id="uname" layoutX="429.0" layoutY="150.0" prefHeight="30.0" prefWidth="214.0" promptText="Username" styleClass="tf" stylesheets="@style.css" />
+      <PasswordField fx:id="pass" layoutX="430.0" layoutY="192.0" prefHeight="26.0" prefWidth="209.0" promptText="Password" styleClass="tf" stylesheets="@../syle/style.css" />
       <Button fx:id="daftarbtn" layoutX="512.0" layoutY="293.0" mnemonicParsing="false" onAction="#daftar" prefWidth="49.0" styleClass="closeBtnImg" stylesheets="@../syle/style.css">
          <graphic>
             <Text fx:id="daftartext" fill="#447fb5" strokeType="OUTSIDE" strokeWidth="0.0" text="Daftar" />
          </graphic>
       </Button>
+      <Button fx:id="logbtn" layoutX="486.0" layoutY="249.0" mnemonicParsing="false" onAction="#loginbtn" styleClass="lgBtn" stylesheets="@style.css" text="Masuk" textFill="WHITE" />
+      <AnchorPane id="logo" prefHeight="400.0" prefWidth="371.0" styleClass="logo" stylesheets="@style.css">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="118.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/Logo.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
    </children>
    <opaqueInsets>
       <Insets />

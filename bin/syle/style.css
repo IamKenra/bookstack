@@ -41,3 +41,16 @@
     -fx-border-color: transparent;
     -fx-text-fill: white;
 }
+
+.dashboard{
+    -fx-min-width: 1920px;
+    -fx-min-height: 1080px;
+    -fx-background-color:  #E9E9E9;
+}
+
+.dashboardmenu{
+    -fx-min-width: 380px;
+    -fx-min-height: 1080px;
+    -fx-background-color:  #447FB5;
+    -fx-background-radius: 0 40 40 0;    
+}

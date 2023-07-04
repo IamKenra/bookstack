@@ -1,7 +1,6 @@
 package cont;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -53,23 +52,58 @@ public class loginpagecontroller implements Initializable {
     }
     
     @FXML
-    private void loginbtn (ActionEvent event){
-        String username = uname.getText();
-        String password = pass.getText();
+    private void loginbtn(ActionEvent event) {
+    String username = uname.getText();
+    String password = pass.getText();
 
+    try {
+        cConfig.connection(); // Membuka koneksi basis data
         String encryptedPassword = encryptPassword(password);
 
         if (encryptedPassword != null) {
             if (authenticate(username, encryptedPassword)) {
                 showInfoAlert("Login Success", "User logged in successfully");
                 // Lakukan tindakan sesuai kebutuhan setelah login sukses
+                try{
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dashboard.fxml")); 
+                    Parent root = loader.load();
+
+                    cont.DashboardAdminController adminController = loader.getController();
+                    adminController.setStage((Stage) daftarbtn.getScene().getWindow());
+                    Scene scene = new Scene(root);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.show();
+                    
+                    //menutup loginpage
+                    Stage loginStage = (Stage) daftarbtn.getScene().getWindow();
+                    loginStage.close();
+                }
+                catch (Exception e) {
+                e.printStackTrace();
+                }
+                System.out.println("Login berhasil");
             } else {
                 showErrorAlert("Login Failed", "Invalid username or password");
+                System.out.println("Login gagal: Invalid username or password");
             }
-        } else {
+        } 
+        else {
             showErrorAlert("Login Failed", "Failed to encrypt password");
+            System.out.println("Login gagal: Failed to encrypt password");
+        }
+    } 
+    finally {
+        try {
+            cConfig.connect.close(); // Menutup koneksi basis data
+            System.out.println("koneksi tertutup.");
+        }
+        catch (SQLException e) {
+            System.out.println("Gagal menutup koneksi: " + e.getMessage());
         }
     }
+}
+
     
     @FXML
     public void daftar() throws IOException {
@@ -91,14 +125,14 @@ public class loginpagecontroller implements Initializable {
                 //menutup loginpage.fxml setelah daftarpage.fxml ditampilkan
                 Stage loginStage = (Stage) daftarbtn.getScene().getWindow();
                 loginStage.close();
-
-            } catch (Exception e) {
+            } 
+            catch (Exception e) {
                 e.printStackTrace();
             }
         } 
-            else {
+        else {
             System.err.println("Scene is not set. Please make sure the button is attached to a scene.");
-            }
+        }
     }
 
 
@@ -109,7 +143,7 @@ public class loginpagecontroller implements Initializable {
     }
 
     private boolean authenticate(String username, String password) {
-        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM admin WHERE username = ? AND password = ?";
 
         try (Connection connection = cConfig.connect;
             PreparedStatement statement = connection.prepareStatement(query)) {

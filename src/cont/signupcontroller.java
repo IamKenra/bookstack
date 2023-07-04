@@ -93,27 +93,40 @@ public class signupcontroller {
                 System.err.println("Stage is not set. Please set the stage before calling 'daftar()'.");
             }
     }
-
+    
     private boolean register(String username, String password) {
-        String query = "INSERT INTO users (username, password, isAdmin) VALUES (?, ?, ?)";
+    String query = "INSERT INTO admin (username, password) VALUES (?, ?)";
 
-        try (Connection connection = cConfig.connect;
-            PreparedStatement statement = connection.prepareStatement(query)) {
+    try (Connection connection = cConfig.connect;
+         PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setString(1, username);
-            statement.setString(2, password);
-            statement.setBoolean(3, false); // Nilai default untuk isAdmin
+        statement.setString(1, username);
+        statement.setString(2, password);
 
-            statement.executeUpdate();
+        statement.executeUpdate();
 
-            return true; // Pendaftaran sukses
+        return true; // Pendaftaran sukses
 
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            cConfig.connect.close(); // Menutup koneksi basis data
+            back(); // Memanggil metode back()
         } catch (SQLException e) {
+            System.out.println("Gagal menutup koneksi: " + e.getMessage());
+        } catch (IOException | InvocationTargetException e) {
             e.printStackTrace();
+            Throwable cause = e.getCause();
+            if (cause != null) {
+                cause.printStackTrace();
+            }
         }
-
-        return false; // Pendaftaran gagal
     }
+
+    return false; // Pendaftaran gagal
+}
+
 
     private String encryptPassword(String password) {
         try {
