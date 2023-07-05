@@ -87,7 +87,7 @@ public class loginpagecontroller implements Initializable {
                 showErrorAlert("Login Failed", "Invalid username or password");
                 System.out.println("Login gagal: Invalid username or password");
             }
-        } 
+        }   
         else {
             showErrorAlert("Login Failed", "Failed to encrypt password");
             System.out.println("Login gagal: Failed to encrypt password");

@@ -20,7 +20,7 @@ public class cConfig {
             //buat kon ke database
             connect = DriverManager.getConnection(DB_URL, USER, PASS);
             System.out.println("koneksi berhasil");
-        }
+        }   
         catch(Exception e){
             e.printStackTrace();
             System.out.println("koneksi gagal");
