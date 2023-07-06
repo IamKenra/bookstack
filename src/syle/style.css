@@ -1,3 +1,8 @@
+@font-face{
+    font-family: "Ubuntu";
+    src: url("Ubuntu-B.ttf");
+}   
+
 .frame {
     -fx-min-width: 700px;
     -fx-min-height: 400px;
@@ -51,10 +56,13 @@
 .dashboardmenu{
     -fx-min-width: 170px;
     -fx-min-height: 720px;
-    -fx-background-color:  #447FB5;
-    -fx-background-radius: 0 20 20 0;    
+    -fx-background-color:  #447FB5;   
 }
 
 .dashboardBtn{
+    -fx-font-family: "Ubuntu";
+    -fx-font-size: 16px;
+    -fx-text-fill: #ffffff;
+    -fx-margin: 10px 0px 0px 40px;
     -fx-background-color:  #447FB5;
 }

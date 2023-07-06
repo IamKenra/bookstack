@@ -3,45 +3,126 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cont.DashboardAdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-1280" minHeight="720" minWidth="1280" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cont.DashboardAdminController">
    <children>
-      <VBox minHeight="720.0" prefHeight="720.0" prefWidth="250.0" styleClass="dashboardmenu" stylesheets="@../syle/style.css">
+      <VBox layoutY="-18.0" minHeight="720.0" prefHeight="752.0" prefWidth="250.0" styleClass="dashboardmenu" stylesheets="@../syle/style.css">
          <children>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="155.0" text="Dashboard">
+            <ImageView fitHeight="40.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/logo_long.png" />
+               </image>
                <VBox.margin>
-                  <Insets left="60.0" top="150.0" />
+                  <Insets left="30.0" top="60.0" />
                </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="155.0" text="Peminjaman">
+            </ImageView>
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="155.0" styleClass="dashboardBtn" stylesheets="@../syle/style.css" text="Dashboard" textFill="WHITE">
                <VBox.margin>
-                  <Insets left="60.0" />
-               </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="118.0" text="Anggota">
-               <VBox.margin>
-                  <Insets left="60.0" />
+                  <Insets left="40.0" top="90.0" />
                </VBox.margin>
                <graphic>
-                  <ImageView fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <cursor>
                         <Cursor fx:constant="SW_RESIZE" />
                      </cursor>
+                     <image>
+                        <Image url="@../img/property/bar-chart-square-02.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Malgun Gothic Bold" size="16.0" />
+               </font>
+               <padding>
+                  <Insets left="-25.0" />
+               </padding>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="155.0" styleClass="dashboardBtn" stylesheets="@../syle/style.css" text="Peminjaman" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="40.0" top="10.0" />
+               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/property/material-symbols_pending-actions-rounded.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Malgun Gothic Bold" size="16.0" />
+               </font>
+               <padding>
+                  <Insets left="-15.0" />
+               </padding>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" styleClass="dashboardBtn" stylesheets="@../syle/style.css" text="Anggota" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="40.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Malgun Gothic Bold" size="15.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <ColorAdjust />
+               </effect>
+               <padding>
+                  <Insets left="-5.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/property/ph_user-bold.png" />
+                     </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="155.0" text="Buku">
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" styleClass="dashboardBtn" stylesheets="@../syle/style.css" text="Buku" textFill="WHITE">
+               <font>
+                  <Font name="Malgun Gothic Bold" size="15.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <ColorAdjust />
+               </effect>
+               <padding>
+                  <Insets left="-5.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/property/ri_book-line.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
                <VBox.margin>
-                  <Insets left="60.0" />
+                  <Insets left="40.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="126.0" text="Keluar">
+            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="122.0" styleClass="dashboardBtn" stylesheets="@../syle/style.css" text="Keluar">
                <VBox.margin>
-                  <Insets left="60.0" top="100.0" />
+                  <Insets left="40.0" top="280.0" />
                </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="76.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/property/iconamoon_exit-bold.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="-15.0" />
+               </padding>
             </Button>
          </children></VBox>
    </children>

@@ -73,7 +73,9 @@ public class loginpagecontroller implements Initializable {
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
                     stage.setScene(scene);
+                    stage.initStyle(StageStyle.UNDECORATED);
                     stage.show();
+                    
                     
                     //menutup loginpage
                     Stage loginStage = (Stage) daftarbtn.getScene().getWindow();
