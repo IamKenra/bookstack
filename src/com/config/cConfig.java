@@ -2,8 +2,7 @@ package com.config;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
-import java.sql.Statement;
-
+import java.sql.SQLException;
 
 public class cConfig {
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -14,17 +13,26 @@ public class cConfig {
     public static Connection connect;
 
     public static void connection() {
-        try{
-            //untuk regristrasi driver yang akan dipakai
+        try {
+            // Registrasi driver yang akan digunakan
             Class.forName(JDBC_DRIVER);
-            //buat kon ke database
+            // Buat koneksi ke database
             connect = DriverManager.getConnection(DB_URL, USER, PASS);
-            System.out.println("koneksi berhasil");
-        }   
-        catch(Exception e){
+            System.out.println("Koneksi berhasil");
+        } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("koneksi gagal");
+            System.out.println("Koneksi gagal");
+        }
+    }
+
+    public static void disconnect() {
+        try {
+            if (connect != null) {
+                connect.close();
+                System.out.println("Koneksi terputus");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
-

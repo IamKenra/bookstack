@@ -69,7 +69,7 @@ public class loginpagecontroller implements Initializable {
                     Parent root = loader.load();
 
                     cont.DashboardAdminController adminController = loader.getController();
-                    adminController.setStage((Stage) daftarbtn.getScene().getWindow());
+                    adminController.setStage((Stage)daftarbtn.getScene().getWindow());
                     Scene scene = new Scene(root);
                     Stage stage = new Stage();
                     stage.setScene(scene);

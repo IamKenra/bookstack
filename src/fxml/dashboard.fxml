@@ -6,26 +6,23 @@
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-1280" minHeight="720" minWidth="1280" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cont.DashboardAdminController">
-   <children>
-      <VBox layoutY="-18.0" minHeight="720.0" prefHeight="752.0" prefWidth="250.0" styleClass="dashboardmenu" stylesheets="@../syle/style.css">
+<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cont.DashboardAdminController">
+   <left>
+      <VBox prefHeight="720.0" prefWidth="244.0" styleClass="dashboardmenu" stylesheets="@../syle/style.css" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="40.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/logo_long.png" />
                </image>
                <VBox.margin>
-                  <Insets left="30.0" top="60.0" />
+                  <Insets left="30.0" top="40.0" />
                </VBox.margin>
             </ImageView>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="155.0" styleClass="dashboardBtn" stylesheets="@../syle/style.css" text="Dashboard" textFill="WHITE">
-               <VBox.margin>
-                  <Insets left="40.0" top="90.0" />
-               </VBox.margin>
+            <Button id="dashboard" fx:id="dashboard" mnemonicParsing="false" onAction="#dashboard" prefHeight="40.0" prefWidth="155.0" styleClass="dashboardBtn" stylesheets="@../syle/style.css" text="Dashboard" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <cursor>
@@ -42,11 +39,14 @@
                <padding>
                   <Insets left="-25.0" />
                </padding>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="155.0" styleClass="dashboardBtn" stylesheets="@../syle/style.css" text="Peminjaman" textFill="WHITE">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
                <VBox.margin>
-                  <Insets left="40.0" top="10.0" />
+                  <Insets left="30.0" top="50.0" />
                </VBox.margin>
+            </Button>
+            <Button fx:id="peminjaman" mnemonicParsing="false" onAction="#peminjaman" prefHeight="40.0" prefWidth="155.0" styleClass="dashboardBtn" stylesheets="@../syle/style.css" text="Peminjaman" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -60,11 +60,11 @@
                <padding>
                   <Insets left="-15.0" />
                </padding>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" styleClass="dashboardBtn" stylesheets="@../syle/style.css" text="Anggota" textFill="WHITE">
                <VBox.margin>
-                  <Insets left="40.0" top="10.0" />
+                  <Insets left="30.0" top="5.0" />
                </VBox.margin>
+            </Button>
+            <Button fx:id="anggota" mnemonicParsing="false" onAction="#anggota" prefHeight="40.0" prefWidth="117.0" styleClass="dashboardBtn" stylesheets="@../syle/style.css" text="Anggota" textFill="WHITE">
                <font>
                   <Font name="Malgun Gothic Bold" size="15.0" />
                </font>
@@ -84,8 +84,11 @@
                      </image>
                   </ImageView>
                </graphic>
+               <VBox.margin>
+                  <Insets left="30.0" top="5.0" />
+               </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" styleClass="dashboardBtn" stylesheets="@../syle/style.css" text="Buku" textFill="WHITE">
+            <Button fx:id="buku" mnemonicParsing="false" onAction="#buku" prefHeight="40.0" prefWidth="90.0" styleClass="dashboardBtn" stylesheets="@../syle/style.css" text="Buku" textFill="WHITE">
                <font>
                   <Font name="Malgun Gothic Bold" size="15.0" />
                </font>
@@ -106,13 +109,10 @@
                   </ImageView>
                </graphic>
                <VBox.margin>
-                  <Insets left="40.0" top="10.0" />
+                  <Insets left="30.0" top="5.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="122.0" styleClass="dashboardBtn" stylesheets="@../syle/style.css" text="Keluar">
-               <VBox.margin>
-                  <Insets left="40.0" top="280.0" />
-               </VBox.margin>
+            <Button fx:id="keluar" mnemonicParsing="false" prefHeight="43.0" prefWidth="122.0" styleClass="dashboardBtn" stylesheets="@../syle/style.css" text="Keluar">
                <graphic>
                   <ImageView fitHeight="76.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -123,7 +123,11 @@
                <padding>
                   <Insets left="-15.0" />
                </padding>
+               <VBox.margin>
+                  <Insets left="30.0" top="370.0" />
+               </VBox.margin>
             </Button>
-         </children></VBox>
-   </children>
-</AnchorPane>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>
