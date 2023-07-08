@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cont.anggotacontroller">
    <children>
       <Text layoutX="43.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Anggota">
          <font>
@@ -20,5 +20,7 @@
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
+      <Button fx:id="daftarbtn" layoutX="43.0" layoutY="632.0" mnemonicParsing="false" onAction="#daftar" styleClass="lgBtn" stylesheets="@../syle/style.css" text="Daftar" />
+      <Button fx:id="ubahbtn" layoutX="174.0" layoutY="633.0" mnemonicParsing="false" onAction="#ubah" styleClass="hpsbtn" stylesheets="@../syle/style.css" text="Ubah" />
    </children>
 </AnchorPane>

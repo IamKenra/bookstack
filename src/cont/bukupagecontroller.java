@@ -1,12 +1,7 @@
 package cont;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,21 +9,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import com.config.cConfig;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn;
-import cont.Buku;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
+public class bukupagecontroller implements Initializable {
 
-public class bukupagecontroller implements Initializable{
-    
     @FXML
     private Button tombol;
 
@@ -56,15 +53,23 @@ public class bukupagecontroller implements Initializable{
     @FXML
     private TableColumn<Buku, String> statusColumn;
 
-    
+    private ObservableList<Buku> bukuList;
+
     @FXML
-    private void addbuku (ActionEvent event) throws IOException{
-      try {
+    private void addbuku (ActionEvent event) throws IOException {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addbukupage.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Add Buku Page");
+
+            // Set the modality to APPLICATION_MODAL to make the new window modal
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            // Wait for the new window to be closed before refreshing the data
+            stage.setOnHidden(e -> loadData());
+
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,13 +77,20 @@ public class bukupagecontroller implements Initializable{
     }
 
     @FXML
-    private void ubahbuku (ActionEvent event) throws IOException{
-      try {
+    private void ubahbuku(ActionEvent event) throws IOException {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ubahbuku.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("Ubah Buku Page");
+
+            // Set the modality to APPLICATION_MODAL to make the new window modal
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            // Wait for the new window to be closed before refreshing the data
+            stage.setOnHidden(e -> loadData());
+
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,6 +105,8 @@ public class bukupagecontroller implements Initializable{
 
             ResultSet resultSet = statement.executeQuery();
 
+            bukuList = FXCollections.observableArrayList();
+
             while (resultSet.next()) {
                 String namaBuku = resultSet.getString("nama_buku");
                 String penulis = resultSet.getString("penulis");
@@ -103,19 +117,19 @@ public class bukupagecontroller implements Initializable{
                 String status = resultSet.getString("status");
 
                 Buku buku = new Buku(namaBuku, penulis, tahunTerbit, isbn, nomorRakId, jumlah, status);
-                tableView.getItems().add(buku);
+                bukuList.add(buku);
             }
+
+            tableView.setItems(bukuList);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cConfig.connection();
-        // TODO Auto-generated method stub
-        // Set PropertyValueFactory for each column
+
         namaBukuColumn.setCellValueFactory(new PropertyValueFactory<>("namaBuku"));
         penulisColumn.setCellValueFactory(new PropertyValueFactory<>("penulis"));
         tahunTerbitColumn.setCellValueFactory(new PropertyValueFactory<>("tahunTerbit"));
@@ -124,8 +138,6 @@ public class bukupagecontroller implements Initializable{
         jumlahColumn.setCellValueFactory(new PropertyValueFactory<>("jumlah"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        // Load data from database and populate TableView
         loadData();
-        
     }
 }

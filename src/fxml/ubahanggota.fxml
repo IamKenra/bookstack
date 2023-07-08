@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="303.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cont.ubahanggotacontroller">
+   <children>
+      <TextField fx:id="namaLengkap" layoutX="29.0" layoutY="63.0" prefHeight="26.0" prefWidth="353.0" promptText="Nama Lengkap" />
+      <TextField fx:id="nomorTlp" layoutX="29.0" layoutY="100.0" prefHeight="30.0" prefWidth="173.0" promptText="Nomor Telepon" />
+      <Button fx:id="ubah" layoutX="29.0" layoutY="251.0" mnemonicParsing="false" onAction="#ubah" styleClass="lgBtn" stylesheets="@../syle/style.css" text="Ubah" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <TextArea fx:id="alamat" layoutX="29.0" layoutY="141.0" prefHeight="90.0" prefWidth="354.0" promptText="Alamat" />
+      <DatePicker fx:id="tanggalLahir" layoutX="206.0" layoutY="99.0" prefHeight="30.0" prefWidth="175.0" promptText="Tanggal lahir" />
+      <TextField fx:id="cari" layoutX="29.0" layoutY="27.0" prefHeight="26.0" prefWidth="353.0" promptText="Cari..." />
+      <Button fx:id="hapus" layoutX="281.0" layoutY="251.0" mnemonicParsing="false" onAction="#hapus" styleClass="hpsbtn" stylesheets="@../syle/style.css" text="Hapus" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="caribtn" layoutX="361.0" layoutY="28.0" mnemonicParsing="false" onAction="#cari" prefHeight="26.0" prefWidth="22.0" text="Button" />
+   </children>
+</AnchorPane>
