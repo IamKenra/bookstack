@@ -1,10 +1,6 @@
 {
-    "java.project.sourcePaths": ["src"],
-    "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "c:\\Users\\iam\\Documents\\java jawir\\mysql-connector-j-8.0.33.jar",
-        "mysql-connector-j-8.0.33.jar",
-        "c:\\Users\\lenovo\\Downloads\\xstream-1.4.20 (1).jar"
+        "mysql-connector-j-8.0.33.jar"
     ]
 }

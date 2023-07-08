@@ -43,7 +43,7 @@ public class DashboardAdminController implements Initializable {
 
     @FXML
     private void anggota (ActionEvent event) throws IOException{
-        AnchorPane view = FXMLLoader.load(getClass().getResource("/fxml/anggotapage.fxml"));
+        AnchorPane view = FXMLLoader.load(getClass().getResource("/fxml/anggota.fxml"));
         pane.setCenter(view);
     }
 
