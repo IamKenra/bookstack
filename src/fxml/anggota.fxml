@@ -14,10 +14,12 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Text>
-      <TableView layoutX="43.0" layoutY="78.0" prefHeight="529.0" prefWidth="947.0">
+      <TableView fx:id="tableView" layoutX="43.0" layoutY="78.0" prefHeight="529.0" prefWidth="947.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="nomorAnggota" prefWidth="75.0" text="C1" />
+          <TableColumn fx:id="nama" prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="no_telepon" prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="alamat" prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
       <Button fx:id="daftarbtn" layoutX="43.0" layoutY="632.0" mnemonicParsing="false" onAction="#daftar" styleClass="lgBtn" stylesheets="@../syle/style.css" text="Daftar" />

@@ -1,53 +1,40 @@
 package cont;
 
+import com.config.cConfig;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 
-import com.config.cConfig;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class addanggotacontroller {
     @FXML
-    private AnchorPane anchorPane;
-
+    private TextField txtNomorAnggota;
     @FXML
-    private TextField namaLengkap;
-
+    private TextField txtNama;
     @FXML
-    private TextField nomorTlp;
-
+    private TextField txtNomorTelepon;
     @FXML
-    private Button daftar;
-
+    private TextArea txtAlamat;
     @FXML
-    private TextArea alamat;
+    private DatePicker dateTanggalLahir;
 
-    @FXML
-    private DatePicker tanggalLahir;
-
-    
     @FXML
     private void daftar() {
-        // Generate nomor anggota unik
-        String nomorAnggota = generateUniqueNomorAnggota();
-        
-        // Dapatkan data dari komponen UI
-        String nama = namaLengkap.getText();
-        String nomorTelepon = nomorTlp.getText();
-        String alamatLengkap = alamat.getText();
-        LocalDate tanggalLahirDate = tanggalLahir.getValue();
-        String tanggalLahirStr = tanggalLahirDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String nomorAnggota = txtNomorAnggota.getText();
+        String nama = txtNama.getText();
+        String nomorTelepon = txtNomorTelepon.getText();
+        String alamatLengkap = txtAlamat.getText();
+        String tanggalLahirStr = dateTanggalLahir.getValue().toString();
 
-        // Simpan data ke database
+        if (nomorAnggota.isEmpty() || nama.isEmpty() || nomorTelepon.isEmpty() || alamatLengkap.isEmpty() || tanggalLahirStr.isEmpty()) {
+            showErrorMessage("Harap isi semua field");
+            return;
+        }
+
         try {
             cConfig.connection();
 
@@ -60,35 +47,37 @@ public class addanggotacontroller {
             statement.setString(5, tanggalLahirStr);
             statement.executeUpdate();
 
-            System.out.println("Data berhasil disimpan ke database");
+            showInformationMessage("Data berhasil disimpan ke database");
+            clearFields();
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Terjadi kesalahan saat menyimpan data ke database");
+            showErrorMessage("Terjadi kesalahan saat menyimpan data ke database");
         } finally {
             cConfig.disconnect();
         }
     }
 
-    private String generateUniqueNomorAnggota() {
-        String nomorAnggota = null;
-        boolean unique = false;
-        
-        try {
-            cConfig.connection();
-            PreparedStatement statement = cConfig.connect.prepareStatement("SELECT anggota FROM nama_tabel WHERE nomor_anggota = ?");
-            
-            do {
-                nomorAnggota = UUID.randomUUID().toString().substring(0, 8);
-                statement.setString(1, nomorAnggota);
-                ResultSet resultSet = statement.executeQuery();
-                unique = !resultSet.next();
-            } while (!unique);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            cConfig.disconnect();
-        }
-        
-        return nomorAnggota;
+    private void showErrorMessage(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showInformationMessage(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void clearFields() {
+        txtNomorAnggota.clear();
+        txtNama.clear();
+        txtNomorTelepon.clear();
+        txtAlamat.clear();
+        dateTanggalLahir.setValue(null);
     }
 }

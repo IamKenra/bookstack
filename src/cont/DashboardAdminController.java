@@ -55,7 +55,7 @@ public class DashboardAdminController implements Initializable {
 
     @FXML
     private void peminjaman (ActionEvent event) throws IOException{
-        AnchorPane view = FXMLLoader.load(getClass().getResource("/fxml/dashboardint.fxml"));
+        AnchorPane view = FXMLLoader.load(getClass().getResource("/fxml/peminjaman.fxml"));
         pane.setCenter(view);
     }
     
