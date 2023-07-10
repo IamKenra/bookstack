@@ -14,18 +14,24 @@
             <Font name="System Bold" size="23.0" />
          </font>
       </Text>
-      <Button layoutX="45.0" layoutY="622.0" mnemonicParsing="false" onAction="#addbuku" prefHeight="42.0" prefWidth="112.0" styleClass="lgBtn" stylesheets="@../syle/style.css" text="Tambah" />
+      <Button layoutX="42.0" layoutY="622.0" mnemonicParsing="false" onAction="#addbuku" prefHeight="42.0" prefWidth="112.0" styleClass="lgBtn" stylesheets="@../syle/style.css" text="Tambah" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
       <TableView fx:id="tableView" layoutX="43.0" layoutY="78.0" prefHeight="529.0" prefWidth="947.0">
         <columns>
-          <TableColumn fx:id="namaBukuColumn" prefWidth="75.0" text="C1" />
-          <TableColumn fx:id="penulisColumn" prefWidth="75.0" text="C2" />
-            <TableColumn fx:id="tahunTerbitColumn" prefWidth="75.0" text="C1" />
-            <TableColumn fx:id="isbnColumn" prefWidth="75.0" text="C1" />
-            <TableColumn fx:id="nomorRakIdColumn" prefWidth="75.0" text="C1" />
-            <TableColumn fx:id="jumlahColumn" prefWidth="75.0" text="C1" />
-            <TableColumn fx:id="statusColumn" prefWidth="75.0" text="C1" />
+          <TableColumn fx:id="namaBukuColumn" prefWidth="258.4000663757324" text="Judul" />
+          <TableColumn fx:id="penulisColumn" minWidth="0.0" prefWidth="200.7999267578125" text="Author" />
+            <TableColumn fx:id="tahunTerbitColumn" prefWidth="95.20001220703125" text="Tahun Terbit" />
+            <TableColumn fx:id="isbnColumn" prefWidth="107.20001220703125" text="ISBN" />
+            <TableColumn fx:id="nomorRakIdColumn" minWidth="0.0" prefWidth="88.0" text="Nomor Rak" />
+            <TableColumn fx:id="jumlahColumn" prefWidth="90.39996337890625" text="Jumlah" />
+            <TableColumn fx:id="statusColumn" prefWidth="102.4000244140625" text="Status" />
         </columns>
       </TableView>
-      <Button layoutX="171.0" layoutY="622.0" mnemonicParsing="false" onAction="#ubahbuku" prefHeight="42.0" prefWidth="112.0" styleClass="lgBtn" stylesheets="@../syle/style.css" text="Ubah" />
+      <Button layoutX="171.0" layoutY="622.0" mnemonicParsing="false" onAction="#ubahbuku" prefHeight="42.0" prefWidth="112.0" styleClass="lgBtn" stylesheets="@../syle/style.css" text="Ubah" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
    </children>
 </AnchorPane>

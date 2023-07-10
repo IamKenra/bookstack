@@ -67,4 +67,8 @@ public class Peminjaman {
     public void setTanggalPengembalian(LocalDate tanggalPengembalian) {
         this.tanggalPengembalian = tanggalPengembalian;
     }
+
+    public void setIsbn(String isbnById) {
+        this.isbn = isbnById;
+    }
 }

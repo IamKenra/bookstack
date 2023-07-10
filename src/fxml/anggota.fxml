@@ -16,13 +16,19 @@
       </Text>
       <TableView fx:id="tableView" layoutX="43.0" layoutY="78.0" prefHeight="529.0" prefWidth="947.0">
         <columns>
-          <TableColumn fx:id="nomorAnggota" prefWidth="75.0" text="C1" />
-          <TableColumn fx:id="nama" prefWidth="75.0" text="C2" />
-            <TableColumn fx:id="no_telepon" prefWidth="75.0" text="C2" />
-            <TableColumn fx:id="alamat" prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="nomorAnggota" prefWidth="121.60004425048828" text="Nomor Anggota" />
+          <TableColumn fx:id="nama" prefWidth="233.60003662109375" text="Nama Anggota" />
+            <TableColumn fx:id="no_telepon" prefWidth="164.80001831054688" text="Nomor Telepon" />
+            <TableColumn fx:id="alamat" minWidth="7.20001220703125" prefWidth="423.99993896484375" text="Alamat" />
         </columns>
       </TableView>
-      <Button fx:id="daftarbtn" layoutX="43.0" layoutY="632.0" mnemonicParsing="false" onAction="#daftar" styleClass="lgBtn" stylesheets="@../syle/style.css" text="Daftar" />
-      <Button fx:id="ubahbtn" layoutX="174.0" layoutY="633.0" mnemonicParsing="false" onAction="#ubah" styleClass="hpsbtn" stylesheets="@../syle/style.css" text="Ubah" />
+      <Button fx:id="daftarbtn" layoutX="43.0" layoutY="632.0" mnemonicParsing="false" onAction="#daftar" prefHeight="38.0" prefWidth="100.0" styleClass="lgBtn" stylesheets="@../syle/style.css" text="Daftar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Button fx:id="ubahbtn" layoutX="174.0" layoutY="633.0" mnemonicParsing="false" onAction="#ubah" prefHeight="38.0" prefWidth="100.0" styleClass="lgBtn" stylesheets="@../syle/style.css" text="Ubah" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
    </children>
 </AnchorPane>

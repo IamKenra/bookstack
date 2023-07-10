@@ -50,7 +50,7 @@ public class peminjamancontroller {
     @FXML
     private TableColumn<Peminjaman, String> status ;
 
-   @FXML
+    @FXML
     private void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nomorAnggotaColumn.setCellValueFactory(new PropertyValueFactory<>("nomorAnggota"));
@@ -59,17 +59,17 @@ public class peminjamancontroller {
         isbnColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         tanggalPeminjamanColumn.setCellValueFactory(new PropertyValueFactory<>("tanggalPeminjaman"));
         tanggalPengembalianColumn.setCellValueFactory(new PropertyValueFactory<>("tanggalPengembalian"));
-        
+
         status.setCellValueFactory(cellData -> {
             Peminjaman peminjaman = cellData.getValue();
             LocalDate currentDate = LocalDate.now();
             String statusText = peminjaman.getTanggalPengembalian().isBefore(currentDate) ? "Terlambat" : "Aman";
             return new SimpleStringProperty(statusText);
         });
-        
+
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbperpus", "root", "");
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM peminjaman");
-            ResultSet resultSet = statement.executeQuery()) {
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM peminjaman");
+             ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
@@ -78,14 +78,11 @@ public class peminjamancontroller {
                 LocalDate tanggalPeminjaman = resultSet.getDate("tanggal_peminjaman").toLocalDate();
                 LocalDate tanggalPengembalian = resultSet.getDate("tanggal_pengembalian").toLocalDate();
 
-                String nomorAnggota = getNomorAnggotaById(anggotaId, connection);
-                String isbn = getISBNById(bukuId, connection);
-                String nama = getNamaById(anggotaId, connection);
-                String buku = getBukuById(bukuId, connection);
-
-                Peminjaman peminjaman = new Peminjaman(id, nomorAnggota, isbn, tanggalPeminjaman, tanggalPengembalian);
-                peminjaman.setNama(nama);
-                peminjaman.setBuku(buku);
+                Peminjaman peminjaman = new Peminjaman(id, null, null, tanggalPeminjaman, tanggalPengembalian);
+                peminjaman.setNama(getNamaById(anggotaId, connection));
+                peminjaman.setBuku(getBukuById(bukuId, connection));
+                peminjaman.setNomorAnggota(getNomorAnggotaById(anggotaId, connection));
+                peminjaman.setIsbn(getISBNById(bukuId, connection));
                 dipinjam.getItems().add(peminjaman);
             }
         } catch (SQLException e) {
@@ -93,7 +90,6 @@ public class peminjamancontroller {
         }
     }
 
-    
     @FXML
     private void peminjaman(ActionEvent event) throws IOException {
         try {
@@ -101,7 +97,24 @@ public class peminjamancontroller {
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle("Daftar Anggota");
+            stage.setTitle("Peminjaman");
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            stage.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void pengembalian(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/pembembalianpeminjaman.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Pengembalian");
 
             stage.initModality(Modality.APPLICATION_MODAL);
 
@@ -126,22 +139,23 @@ public class peminjamancontroller {
         return nomorAnggota;
     }
 
-    public String getISBNById(int id, Connection connection) {
+    private String getISBNById(int bukuId, Connection connection) throws SQLException {
         String isbn = null;
         String query = "SELECT isbn FROM buku WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                isbn = resultSet.getString("isbn");
+            statement.setInt(1, bukuId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    isbn = resultSet.getString("isbn");
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return isbn;
     }
+     
 
-    
     private String getNamaById(int anggotaId, Connection connection) throws SQLException {
         String query = "SELECT nama FROM anggota WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -183,7 +197,6 @@ public class peminjamancontroller {
         }
         return jumlahPeminjaman;
     }
-    
     public int getJumlahPeminjamanTerlambat() {
         int jumlahPeminjamTerlambat = 0;
         String query = "SELECT COUNT(*) FROM peminjaman WHERE tanggal_pengembalian < ?";
