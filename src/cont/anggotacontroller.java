@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.beans.property.ObjectProperty;
 
 public class anggotacontroller {
     @FXML
@@ -32,7 +33,7 @@ public class anggotacontroller {
     private TableColumn<Anggota, String> nama;
 
     @FXML
-    private TableColumn<Anggota, Integer> no_telepon;
+    private TableColumn<Anggota, Long> no_telepon;
 
     @FXML
     private TableColumn<Anggota, String> alamat;
@@ -108,7 +109,7 @@ public class anggotacontroller {
             while (resultSet.next()) {
                 String nomorAnggota = resultSet.getString("nomor_anggota");
                 String nama = resultSet.getString("nama");
-                int noTelepon = resultSet.getInt("nomor_telepon");
+                long noTelepon = resultSet.getLong("nomor_telepon");
                 String alamat = resultSet.getString("alamat");
 
                 Anggota anggota = new Anggota(nomorAnggota, nama, noTelepon, alamat);

@@ -1,17 +1,16 @@
 package cont;
-
 import javafx.beans.property.*;
 
 public class Anggota {
     private StringProperty nomorAnggota;
     private StringProperty nama;
-    private IntegerProperty noTelepon;
+    private LongProperty noTelepon;
     private StringProperty alamat;
 
-    public Anggota(String nomorAnggota, String nama, int noTelepon, String alamat) {
+    public Anggota(String nomorAnggota, String nama, long noTelepon, String alamat) {
         this.nomorAnggota = new SimpleStringProperty(nomorAnggota);
         this.nama = new SimpleStringProperty(nama);
-        this.noTelepon = new SimpleIntegerProperty(noTelepon);
+        this.noTelepon = new SimpleLongProperty(noTelepon);
         this.alamat = new SimpleStringProperty(alamat);
     }
 
@@ -39,15 +38,15 @@ public class Anggota {
         return nama;
     }
 
-    public int getNoTelepon() {
+    public long getNoTelepon() {
         return noTelepon.get();
     }
 
-    public void setNoTelepon(int noTelepon) {
+    public void setNoTelepon(long noTelepon) {
         this.noTelepon.set(noTelepon);
     }
 
-    public IntegerProperty noTeleponProperty() {
+    public LongProperty noTeleponProperty() {
         return noTelepon;
     }
 
