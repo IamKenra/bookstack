@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="316.0" prefWidth="429.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cont.ubahbukucontroller">
    <children>
@@ -15,8 +16,14 @@
       <TextField fx:id="isbnField" layoutX="29.0" layoutY="143.0" prefHeight="26.0" prefWidth="254.0" promptText="ISBN" />
       <TextField fx:id="jumlahField" layoutX="29.0" layoutY="186.0" prefHeight="26.0" prefWidth="65.0" promptText="Jumlah" />
       <ComboBox fx:id="nomorRakComboBox" layoutX="294.0" layoutY="142.0" prefHeight="26.0" prefWidth="106.0" promptText="Nomor Rak" />
-      <Button layoutX="29.0" layoutY="256.0" mnemonicParsing="false" onAction="#simpanButtonClicked" styleClass="lgBtn" stylesheets="@../syle/style.css" text="Button" />
-      <Button layoutX="297.0" layoutY="256.0" mnemonicParsing="false" onAction="#hapusButtonClicked" styleClass="hpsbtn" stylesheets="@../syle/style.css" text="Button" />
+      <Button layoutX="29.0" layoutY="256.0" mnemonicParsing="false" onAction="#simpanButtonClicked" styleClass="lgBtn" stylesheets="@../syle/style.css" text="Ubah" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Button layoutX="297.0" layoutY="256.0" mnemonicParsing="false" onAction="#hapusButtonClicked" styleClass="hpsbtn" stylesheets="@../syle/style.css" text="Hapus" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
       <ComboBox fx:id="statusComboBox" layoutX="295.0" layoutY="185.0" prefHeight="26.0" prefWidth="106.0" promptText="Status" />
       
    </children>

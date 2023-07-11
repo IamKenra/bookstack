@@ -9,7 +9,7 @@
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="259.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cont.PengembalianController">
    <children>
       <TextField fx:id="nomorAnggota" layoutX="29.0" layoutY="36.0" prefHeight="26.0" prefWidth="284.0" promptText="Cari nomor anggota yang meminjam" />
-      <Button fx:id="daftarbtn" layoutX="29.0" layoutY="196.0" mnemonicParsing="false" onAction="#hapusPeminjaman" styleClass="lgBtn" stylesheets="@../syle/style.css" text="Tambah" textFill="WHITE">
+      <Button fx:id="daftarbtn" layoutX="29.0" layoutY="196.0" mnemonicParsing="false" onAction="#hapusPeminjaman" prefHeight="30.0" prefWidth="110.0" styleClass="lgBtn" stylesheets="@../syle/style.css" text="Kembalkan" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>

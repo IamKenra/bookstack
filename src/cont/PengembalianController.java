@@ -85,7 +85,7 @@ public class PengembalianController {
 private Peminjaman pencarianBuku(String nomorAnggota) {
     try {
         // Query SQL untuk mencari data peminjaman berdasarkan nomor_anggota
-        String query = "SELECT peminjaman.id, peminjaman.buku_id, peminjaman.tanggal_peminjaman, peminjaman.tanggal_pengembalian, anggota.nama, buku.nama AS nama_buku, buku.isbn FROM peminjaman JOIN anggota ON peminjaman.anggota_id = anggota.id JOIN buku ON peminjaman.buku_id = buku.id WHERE anggota.nomor_anggota = ?";
+        String query = "SELECT peminjaman.id, peminjaman.buku_id, peminjaman.tanggal_peminjaman, peminjaman.tanggal_pengembalian, anggota.nama, nama_buku AS nama_buku, buku.isbn FROM peminjaman JOIN anggota ON peminjaman.anggota_id = anggota.id JOIN buku ON peminjaman.buku_id = buku.id WHERE anggota.nomor_anggota = ?";
         preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, nomorAnggota);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -113,44 +113,13 @@ private Peminjaman pencarianBuku(String nomorAnggota) {
     return null;
 }
 
- 
-private String getNomorAnggota(int anggotaId) {
-    try {
-        String query = "SELECT nomor_anggota FROM anggota WHERE id = ?";
-        preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setInt(1, anggotaId);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        if (resultSet.next()) {
-            return resultSet.getString("nomor_anggota");
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-    return null;
-}
-
-    // Method untuk mendapatkan ISBN buku berdasarkan ID
-    private String getISBNBuku(int bukuId) {
-        try {
-            String query = "SELECT isbn FROM buku WHERE id = ?";
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, bukuId);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                return resultSet.getString("isbn");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    // Method untuk menghapus data peminjaman dari database berdasarkan nomor anggota
     @FXML
     private void hapusPeminjaman() {
         try {
             // Query SQL untuk menghapus data peminjaman berdasarkan nomor anggota
-            String query = "DELETE FROM peminjaman WHERE nomor_anggota = ?";
+            String query = "DELETE peminjaman FROM peminjaman " +
+                        "JOIN anggota ON peminjaman.anggota_id = anggota.id " +
+                        "WHERE anggota.nomor_anggota = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, nomorAnggota.getText());
             int affectedRows = preparedStatement.executeUpdate();
@@ -167,6 +136,7 @@ private String getNomorAnggota(int anggotaId) {
             e.printStackTrace();
         }
     }
+
 
     private void showAlert(AlertType alertType, String message) {
         Alert alert = new Alert(alertType);

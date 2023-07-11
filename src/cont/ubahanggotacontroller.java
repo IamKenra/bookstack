@@ -131,7 +131,7 @@ public class ubahanggotacontroller {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Terjadi kesalahan saat menghapus data dari database");
+            System.out.println("Anggota masih memiliki buku yang dipinjam, tidak bisa menghapus!");
         } finally {
             cConfig.disconnect();
         }

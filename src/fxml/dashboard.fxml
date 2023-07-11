@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cont.DashboardAdminController">
    <left>
@@ -130,4 +131,11 @@
          </children>
       </VBox>
    </left>
+   <center>
+      <Text fill="#4b98c4" strokeType="OUTSIDE" strokeWidth="0.0" text="Selamat Datang!" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="53.0" />
+         </font>
+      </Text>
+   </center>
 </BorderPane>
