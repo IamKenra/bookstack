@@ -1,3 +1,10 @@
+//Kelompok MnM
+//Anggota: Muhammad Ilham Mahfuzh/20523139 
+//         Gitrif Pahlefy/20523119 (tidak aktif)
+//         Akmal Fauzi Kusumah/19523039 (tidak aktif)
+
+
+
 import com.config.cConfig;
 import cont.loginpagecontroller;
 import java.io.IOException;
